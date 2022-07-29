@@ -1,7 +1,7 @@
 package core.basesyntax.strategy;
 
-import java.util.Map;
 import core.basesyntax.model.OrderType;
+import java.util.Map;
 
 public class OrderStrategyImpl implements OrderStrategy {
     private final Map<String, OrderType> orderTypeMap;

@@ -1,8 +1,8 @@
 package core.basesyntax.dao;
 
+import core.basesyntax.model.OrderType;
 import java.util.Map;
 import java.util.Optional;
-import core.basesyntax.model.OrderType;
 
 public interface OrderDao {
     void update(OrderType type, int price, int size);

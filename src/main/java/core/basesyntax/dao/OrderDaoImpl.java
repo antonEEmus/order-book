@@ -1,11 +1,11 @@
 package core.basesyntax.dao;
 
+import core.basesyntax.db.Storage;
+import core.basesyntax.model.OrderType;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import core.basesyntax.db.Storage;
-import core.basesyntax.model.OrderType;
 
 public class OrderDaoImpl implements OrderDao {
     @Override

@@ -1,10 +1,10 @@
 package core.basesyntax.service;
 
+import core.basesyntax.model.OperationType;
+import core.basesyntax.strategy.OperationHandlerStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import core.basesyntax.model.OperationType;
-import core.basesyntax.strategy.OperationHandlerStrategy;
 
 public class ProcessorServiceImpl implements ProcessorService {
     private final OperationHandlerStrategy operationHandlerStrategy;
@@ -21,10 +21,8 @@ public class ProcessorServiceImpl implements ProcessorService {
             OperationType type = Arrays.stream(OperationType.values())
                     .filter(n -> n.getType().equals(dataRow[0]))
                     .findFirst().get();
-            String result = operationHandlerStrategy.getOperationHandler(type).commitOperation(dataRow);
-            if (result != null) {
-                output.add(result);
-            }
+            operationHandlerStrategy.getOperationHandler(type)
+                    .commitOperation(dataRow, output);
         }
         return output;
     }

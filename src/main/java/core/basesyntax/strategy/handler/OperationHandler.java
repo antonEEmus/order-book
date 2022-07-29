@@ -1,5 +1,7 @@
 package core.basesyntax.strategy.handler;
 
+import java.util.List;
+
 public interface OperationHandler {
-    String commitOperation(String[] rawData);
+    void commitOperation(String[] rawData, List<String> queries);
 }
