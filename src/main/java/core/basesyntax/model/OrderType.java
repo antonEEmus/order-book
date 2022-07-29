@@ -2,8 +2,7 @@ package core.basesyntax.model;
 
 public enum OrderType {
     ASK("ask"),
-    BID("bid"),
-    SPREAD("spread");
+    BID("bid");
 
     private final String type;
     OrderType(String type) {

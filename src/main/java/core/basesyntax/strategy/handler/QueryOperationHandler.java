@@ -1,8 +1,8 @@
 package core.basesyntax.strategy.handler;
 
-import java.util.List;
 import core.basesyntax.dao.OrderDao;
 import core.basesyntax.model.OrderType;
+import java.util.List;
 
 public class QueryOperationHandler implements OperationHandler {
     private final OrderDao orderDao;
@@ -25,7 +25,6 @@ public class QueryOperationHandler implements OperationHandler {
         }
         int price = Integer.parseInt(rawData[2]);
         queries.add(String.valueOf(orderDao.get(OrderType.BID, price).orElseGet(
-                () -> orderDao.get(OrderType.ASK, price).orElseGet(
-                        () -> orderDao.get(OrderType.SPREAD, price).orElse(0)))));
+                () -> orderDao.get(OrderType.ASK, price).orElse(0))));
     }
 }

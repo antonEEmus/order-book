@@ -13,7 +13,6 @@ public class Storage {
 
     public static void clear() {
         orderBook = new HashMap<>();
-        orderBook.put(OrderType.SPREAD, new HashMap<>());
         orderBook.put(OrderType.ASK, new HashMap<>());
         orderBook.put(OrderType.BID, new HashMap<>());
     }
