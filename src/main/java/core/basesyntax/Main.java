@@ -27,9 +27,8 @@ public class Main {
     private static final String OUTPUT_FILE_NAME = "output.txt";
 
     public static void main(String[] args) {
-        Storage.clear();
-
         OrderDao orderDao = new OrderDaoImpl();
+        orderDao.clear();
 
         Map<OperationType, OperationHandler> operationHandlerMap = new HashMap<>();
         operationHandlerMap.put(OperationType.UPDATE, new UpdateOperationHandler(orderDao));

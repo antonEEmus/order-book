@@ -1,7 +1,7 @@
 package core.basesyntax.strategy.handler;
 
 import core.basesyntax.dao.OrderDao;
-import core.basesyntax.model.OrderType;
+import core.basesyntax.model.Order;
 import java.util.List;
 
 public class QueryOperationHandler implements OperationHandler {
@@ -14,17 +14,16 @@ public class QueryOperationHandler implements OperationHandler {
     @Override
     public void commitOperation(String[] rawData, List<String> queries) {
         if (rawData[1].equals("best_bid")) {
-            queries.add(orderDao.getMax(OrderType.BID).getKey()
-                    + "," + orderDao.getMax(OrderType.BID).getValue());
+            Order order = orderDao.getMax(Order.OrderType.BID);
+            queries.add(order.getPrice() + "," + order.getSize());
             return;
         }
         if (rawData[1].equals("best_ask")) {
-            queries.add(orderDao.getMin(OrderType.ASK).getKey()
-                    + "," + orderDao.getMin(OrderType.ASK).getValue());
+            Order order = orderDao.getMin(Order.OrderType.ASK);
+            queries.add(order.getPrice() + "," + order.getSize());
             return;
         }
         int price = Integer.parseInt(rawData[2]);
-        queries.add(String.valueOf(orderDao.get(OrderType.BID, price).orElseGet(
-                () -> orderDao.get(OrderType.ASK, price).orElse(0))));
+        queries.add(String.valueOf(orderDao.get(price)));
     }
 }

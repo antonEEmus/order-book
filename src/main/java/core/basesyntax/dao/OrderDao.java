@@ -1,15 +1,15 @@
 package core.basesyntax.dao;
 
-import core.basesyntax.model.OrderType;
-import java.util.Map;
-import java.util.Optional;
+import core.basesyntax.model.Order;
 
 public interface OrderDao {
-    void update(OrderType type, int price, int size);
+    void update(Order.OrderType type, int price, int size);
 
-    Optional<Integer> get(OrderType type, int price);
+    Integer get(int price);
 
-    Map.Entry<Integer, Integer> getMax(OrderType type);
+    Order getMax(Order.OrderType type);
 
-    Map.Entry<Integer, Integer> getMin(OrderType type);
+    Order getMin(Order.OrderType type);
+
+    void clear();
 }
