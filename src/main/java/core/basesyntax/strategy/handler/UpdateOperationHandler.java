@@ -20,7 +20,7 @@ public class UpdateOperationHandler implements OperationHandler {
         Order.OrderType type = Arrays.stream(Order.OrderType.values())
                 .filter(n -> n.getType().equals(rawData[3]))
                 .findFirst().orElseThrow(
-                        () -> new NoSuchElementException("Unsupported order type"));
+                        () -> new NoSuchElementException("Unsupported order type: " + rawData[3]));
         orderDao.update(type, price, size);
     }
 }

@@ -1,2 +1,2 @@
-u,9,2,max
+u,9,2,ask
 q,size,9

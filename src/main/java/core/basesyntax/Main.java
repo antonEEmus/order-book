@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import core.basesyntax.dao.OrderDao;
 import core.basesyntax.dao.OrderDaoImpl;
-import core.basesyntax.db.Storage;
 import core.basesyntax.model.OperationType;
 import core.basesyntax.service.FileCreatorService;
 import core.basesyntax.service.FileCreatorServiceImpl;
@@ -48,6 +47,6 @@ public class Main {
         fileCreatorService.createFile(OUTPUT_FILE_NAME);
 
         WriterService writerService = new WriterServiceImpl();
-        writerService.write(String.join("\n", data), OUTPUT_FILE_NAME);
+        writerService.write(data, OUTPUT_FILE_NAME);
     }
 }
