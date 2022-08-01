@@ -5,6 +5,7 @@ import core.basesyntax.strategy.OperationHandlerStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ProcessorServiceImpl implements ProcessorService {
     private final OperationHandlerStrategy operationHandlerStrategy;
@@ -20,7 +21,8 @@ public class ProcessorServiceImpl implements ProcessorService {
             String[] dataRow = row.split(",");
             OperationType type = Arrays.stream(OperationType.values())
                     .filter(n -> n.getType().equals(dataRow[0]))
-                    .findFirst().get();
+                    .findFirst().orElseThrow(() -> new NoSuchElementException(
+                            "Unsupported operation type: " + dataRow[0]));
             operationHandlerStrategy.getOperationHandler(type)
                     .commitOperation(dataRow, output);
         }

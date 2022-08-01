@@ -13,17 +13,16 @@ public class QueryOperationHandler implements OperationHandler {
 
     @Override
     public void commitOperation(String[] rawData, List<String> queries) {
+        String output;
         if (rawData[1].equals("best_bid")) {
             Order order = orderDao.getMax(Order.OrderType.BID);
-            queries.add(order.getPrice() + "," + order.getSize());
-            return;
-        }
-        if (rawData[1].equals("best_ask")) {
+            output = order.getPrice() + "," + order.getSize();
+        } else if (rawData[1].equals("best_ask")) {
             Order order = orderDao.getMin(Order.OrderType.ASK);
-            queries.add(order.getPrice() + "," + order.getSize());
-            return;
+            output = order.getPrice() + "," + order.getSize();
+        } else {
+            output = String.valueOf(orderDao.get(Integer.parseInt(rawData[2])));
         }
-        int price = Integer.parseInt(rawData[2]);
-        queries.add(String.valueOf(orderDao.get(price)));
+        queries.add(output);
     }
 }
