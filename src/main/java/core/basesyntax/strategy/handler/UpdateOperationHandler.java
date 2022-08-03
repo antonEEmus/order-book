@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class UpdateOperationHandler implements OperationHandler {
+    private static final int PRICE_INDEX = 1;
+    private static final int SIZE_INDEX = 2;
+    private static final int TYPE_INDEX = 3;
+
     private final OrderDao orderDao;
 
     public UpdateOperationHandler(OrderDao orderDao) {
@@ -15,12 +19,12 @@ public class UpdateOperationHandler implements OperationHandler {
 
     @Override
     public void commitOperation(String[] rawData, List<String> queries) {
-        int price = Integer.parseInt(rawData[1]);
-        int size = Integer.parseInt(rawData[2]);
+        int price = Integer.parseInt(rawData[PRICE_INDEX]);
+        int size = Integer.parseInt(rawData[SIZE_INDEX]);
         Order.OrderType type = Arrays.stream(Order.OrderType.values())
-                .filter(n -> n.getType().equals(rawData[3]))
+                .filter(n -> n.getType().equals(rawData[TYPE_INDEX]))
                 .findFirst().orElseThrow(
-                        () -> new NoSuchElementException("Unsupported order type: " + rawData[3]));
+                        () -> new NoSuchElementException("Unsupported order type: " + rawData[TYPE_INDEX]));
         orderDao.update(type, price, size);
     }
 }

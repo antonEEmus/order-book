@@ -5,9 +5,6 @@ public class Order {
     private int price;
     private int size;
 
-    public Order() {
-    }
-
     public Order(OrderType type, int price, int size) {
         this.type = type;
         this.price = price;
