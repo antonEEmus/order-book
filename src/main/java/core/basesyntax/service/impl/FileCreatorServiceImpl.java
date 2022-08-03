@@ -1,8 +1,9 @@
-package core.basesyntax.service;
+package core.basesyntax.service.impl;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import core.basesyntax.service.FileCreatorService;
 
 public class FileCreatorServiceImpl implements FileCreatorService {
     @Override
